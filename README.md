@@ -1,2 +1,3 @@
-# tic-tac-toe
-Tic Tac Toe game using Javascript.
+# Tic-tac-toe
+
+Tic-tac-toe game using Javascript.
