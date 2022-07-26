@@ -1,4 +1,140 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+*, *::after, *::before {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .7);
+}
+
+.head {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 5px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+}
+
+.cell {
+    background-color: white;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.cell.x::before,
+.cell.x::after,
+.cell.o::before,
+.cell.o::after {
+    background-color: black;
+}
+
+.container.x .cell:not(.x):not(.o):hover::before,
+.container.x .cell:not(.x):not(.o):hover::after,
+.container.o .cell:not(.x):not(.o):hover::before,
+.container.o .cell:not(.x):not(.o):hover::after {
+    background-color: lightgray;
+}
+
+.cell.x::before, 
+.cell.x::after,
+.container.x .cell:not(.x):not(.o):hover::before,
+.container.x .cell:not(.x):not(.o):hover::after {
+    content: '';
+    width: calc(var(--mark-size) * .19);
+    height: var(--mark-size);
+    position: absolute;
+}
+
+.cell.x::before,
+.container.x .cell:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.container.x .cell:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+.cell.o::before, 
+.cell.o::after,
+.container.o .cell:not(.x):not(.o):hover::before,
+.container.o .cell:not(.x):not(.o):hover::after {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+}
+
+.cell.o::before,
+.container.o .cell:not(.x):not(.o):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+.cell.o::after,
+.container.o .cell:not(.x):not(.o):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: white;
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+.result {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(102, 102, 102, 0.9);
+
+}
+.result button {
+    background-color: white;
+    font-size: 2rem;
+    padding: .2rem .5em;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: 1px solid black;
+}
+
+.result button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.result.display {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 4rem;
+}
+
