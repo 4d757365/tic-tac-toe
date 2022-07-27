@@ -3,6 +3,7 @@ const $container = document.querySelector('[data-container]');
 const $result = document.querySelector('[data-result]');
 const $message = document.querySelector('[data-message]');
 const $button = document.getElementById('restart-button');
+const $currentPlayer = document.querySelector('[data-current]');
 const $winning = [
     [0, 1, 2],
     [3, 4, 5],
@@ -60,6 +61,7 @@ function placeMark(cell, currentMark) {
 
 function switchTurn() {
     turn = !turn;
+    
 };
 
 function hoverTurn() {
@@ -67,9 +69,11 @@ function hoverTurn() {
     $container.classList.remove(o);
     if(turn) {
         $container.classList.add(o);
+        displayCurrent(o);
     }
     else {
         $container.classList.add(x);
+        displayCurrent(x);
     }
 };
 
@@ -96,3 +100,14 @@ function isDraw() {
         return cell.classList.contains(x) || cell.classList.contains(o);
     })
 };
+
+function displayCurrent(currentTurn) {
+
+    if(currentTurn === o) {
+        $currentPlayer.innerText = "Player O's Turn";
+    }
+    else {
+        $currentPlayer.innerText = "Player X's Turn";
+    }
+
+}
